@@ -133,6 +133,9 @@ while (leftFollow){
 		if(canLeft()){
 			pwm1.setPWM(0,0, 150);
 			pwm2.setPWM(1,0, 600);
+			usleep(50 * 50);
+			pwm1.setPWM(0,0,0);
+			pwm2.setPWM(1,0,0);
 			leftCount++;
 			rightCount = 0;
 			leftFollow = true;
@@ -140,6 +143,9 @@ while (leftFollow){
 		else if(canRight()){
 			pwm1.setPWM(0,0, 600);
 			pwm2.setPWM(1,0, 150);
+			usleep(50 * 50);
+			pwm1.setPWM(0,0,0);
+			pwm2.setPWM(1,0,0);
 			rightCount++;
 			leftCount = 0;
 			leftFollow = false;
@@ -147,6 +153,9 @@ while (leftFollow){
 		else if(canForward()){
 			pwm1.setPWM(0,0, 150);
 			pwm2.setPWM(1,0, 150);
+			usleep(50 * 50);
+			pwm1.setPWM(0,0,0);
+			pwm2.setPWM(1,0,0);
 			leftCount = 0;
 			rightCount = 0;
 		}
@@ -160,8 +169,8 @@ while (leftFollow){
 			pwm2.setPWM(1,0, 150);
 			usleep(50 * 50);
 		}
-		//pwm1.setPWM(0,0,0);
-		//pwm2.setPWM(1,0,0);
+		pwm1.setPWM(0,0,0);
+		pwm2.setPWM(1,0,0);
 //	}
 	}
 	while(!leftFollow){
@@ -171,6 +180,9 @@ while (leftFollow){
 					if(canLeft()){
 						pwm1.setPWM(0,0, 150);
 						pwm2.setPWM(1,0, 600);
+						usleep(50 * 50);
+						pwm1.setPWM(0,0,0);
+						pwm2.setPWM(1,0,0);
 						leftCount++;
 						rightCount = 0;
 						leftFollow = true;
@@ -178,6 +190,9 @@ while (leftFollow){
 					else if(canRight()){
 						pwm1.setPWM(0,0, 600);
 						pwm2.setPWM(1,0, 150);
+						usleep(50 * 50);
+						pwm1.setPWM(0,0,0);
+						pwm2.setPWM(1,0,0);
 						rightCount++;
 						leftCount = 0;
 						leftFollow = false;
@@ -185,6 +200,9 @@ while (leftFollow){
 					else if(canForward()){
 						pwm1.setPWM(0,0, 150);
 						pwm2.setPWM(1,0, 150);
+						usleep(50 * 50);
+						pwm1.setPWM(0,0,0);
+						pwm2.setPWM(1,0,0);
 						leftCount = 0;
 						rightCount = 0;
 					}
@@ -199,8 +217,8 @@ while (leftFollow){
 						usleep(50 * 50);
 					}
 
-					//pwm1.setPWM(0,0,0);
-					//pwm2.setPWM(1,0,0);
+					pwm1.setPWM(0,0,0);
+					pwm2.setPWM(1,0,0);
 		//		}
 
 	}
