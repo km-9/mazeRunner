@@ -13,7 +13,7 @@ all: $(PROGRAM)
 
 $(PROGRAM): $(SOURCE)
 
-	$(CC) $(SOURCE) -L $(LIBRARIESPATH) -$(LIBRARIES) -pthread -PCA9685.cpp -o$(PROGRAM)
+	$(CC) $(SOURCE) -L $(LIBRARIESPATH) -$(LIBRARIES) -pthread PCA9685.cpp -o$(PROGRAM)
 
 clean:
 
