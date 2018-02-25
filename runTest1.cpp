@@ -129,7 +129,7 @@ int main (int argc, char const *argv[]) {
             break;
 
         }
-			}while(0);
+			}while (false);
 
 while (leftFollow){
 	while(!canLeft && !canRight && canForward){
