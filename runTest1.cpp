@@ -25,6 +25,7 @@ double rightVal;
 
 u_result capture_and_display(RPlidarDriver* drv){
 	u_result ans;
+	cout << "inside cap_and_disp" << endl;
 
 	rplidar_response_measurement_node_t nodes[360*2];
 	size_t count = _countof(nodes);
@@ -85,6 +86,7 @@ if(frontVal > 250){
 }
 
 int main (int argc, char const *argv[]) {
+	cout << "inside main" << endl;
 	PCA9685 pwm1;
 	pwm1.init(1,0x40);
 
@@ -121,9 +123,11 @@ int main (int argc, char const *argv[]) {
             break;
 
         }
+				cout << "end of lidar driver in main" << endl;
 			}while(0);
 
 while (leftFollow){
+	cout << "leftfoolow" << endl;
 	while(!canLeft && !canRight && canForward){
 		capture_and_display(drv);
 		if(canLeft()){
@@ -161,6 +165,7 @@ while (leftFollow){
 	}
 	}
 	while(!leftFollow){
+		cout << "!leftfoolow" << endl;
 				while(!canLeft && !canRight && canForward){
 					capture_and_display(drv);
 					if(canLeft()){
