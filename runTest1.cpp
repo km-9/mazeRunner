@@ -146,6 +146,7 @@ while (leftFollow){
 			leftCount++;
 			rightCount = 0;
 			leftFollow = true;
+			break;
 		}
 		else if(canRight()){
 			pwm1.setPWM(0,0, 600);
@@ -170,12 +171,12 @@ while (leftFollow){
 		}
 		if (leftVal < 150){
 			pwm1.setPWM(0, 0, 150);
-			pwm2.setPWM(1,0, 600);
+			pwm2.setPWM(1,0, 200);
 			usleep(1000 * 100);
 			break;
 		}
 		if (leftVal > 250){
-			pwm1.setPWM(0, 0, 600);
+			pwm1.setPWM(0, 0, 200);
 			pwm2.setPWM(1,0, 150);
 			usleep(1000 * 100);
 			break;
