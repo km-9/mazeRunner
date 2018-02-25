@@ -30,8 +30,6 @@ u_result capture_and_display(RPlidarDriver* drv){
 	rplidar_response_measurement_node_t nodes[360*2];
 	size_t count = _countof(nodes);
 
-	printf("waiting for data...\n");
-
 	// fetech extactly one 0-360 degrees' scan
 	ans = drv->grabScanData(nodes, count);
 	if (IS_OK(ans) || ans == RESULT_OPERATION_TIMEOUT) {
@@ -52,6 +50,11 @@ u_result capture_and_display(RPlidarDriver* drv){
 											rightVal = nodes[pos].distance_q2/4.0f;
 										}
 									}
+									printf("%s theta: %03.2f Dist: %08.2f Q: %d \n",
+		                  (nodes[pos].sync_quality & RPLIDAR_RESP_MEASUREMENT_SYNCBIT) ?"S ":"  ",
+		                  (nodes[pos].angle_q6_checkbit >> RPLIDAR_RESP_MEASUREMENT_ANGLE_SHIFT)/64.0f,
+		                  nodes[pos].distance_q2/4.0f,
+		                  nodes[pos].sync_quality >> RPLIDAR_RESP_MEASUREMENT_QUALITY_SHIFT);
 					}
 			}
 	 else {
@@ -133,7 +136,7 @@ while (leftFollow){
 		if(canLeft()){
 			pwm1.setPWM(0,0, 150);
 			pwm2.setPWM(1,0, 600);
-			usleep(100 * 50);
+			usleep(100 * 5);
 			pwm1.setPWM(0,0,0);
 			pwm2.setPWM(1,0,0);
 			leftCount++;
@@ -143,7 +146,7 @@ while (leftFollow){
 		else if(canRight()){
 			pwm1.setPWM(0,0, 600);
 			pwm2.setPWM(1,0, 150);
-			usleep(100 * 50);
+			usleep(100 * 5);
 			pwm1.setPWM(0,0,0);
 			pwm2.setPWM(1,0,0);
 			rightCount++;
@@ -153,7 +156,7 @@ while (leftFollow){
 		else if(canForward()){
 			pwm1.setPWM(0,0, 150);
 			pwm2.setPWM(1,0, 150);
-			usleep(100 * 50);
+			usleep(100 * 5);
 			pwm1.setPWM(0,0,0);
 			pwm2.setPWM(1,0,0);
 			leftCount = 0;
@@ -162,12 +165,12 @@ while (leftFollow){
 		if (leftVal < 150){
 			pwm1.setPWM(0, 0, 150);
 			pwm2.setPWM(1,0, 200);
-			usleep(100 * 50);
+			usleep(100 * 5);
 		}
 		if (leftVal > 250){
 			pwm1.setPWM(0, 0, 200);
 			pwm2.setPWM(1,0, 150);
-			usleep(100 * 50);
+			usleep(100 * 5);
 		}
 	}
 		pwm1.setPWM(0,0,0);
@@ -180,7 +183,7 @@ while (leftFollow){
 					if(canLeft()){
 						pwm1.setPWM(0,0, 150);
 						pwm2.setPWM(1,0, 600);
-						usleep(100 * 50);
+						usleep(100 * 5);
 						pwm1.setPWM(0,0,0);
 						pwm2.setPWM(1,0,0);
 						leftCount++;
@@ -190,7 +193,7 @@ while (leftFollow){
 					else if(canRight()){
 						pwm1.setPWM(0,0, 600);
 						pwm2.setPWM(1,0, 150);
-						usleep(100 * 50);
+						usleep(100 * 5);
 						pwm1.setPWM(0,0,0);
 						pwm2.setPWM(1,0,0);
 						rightCount++;
@@ -200,7 +203,7 @@ while (leftFollow){
 					else if(canForward()){
 						pwm1.setPWM(0,0, 150);
 						pwm2.setPWM(1,0, 150);
-						usleep(100 * 50);
+						usleep(100 * 5);
 						pwm1.setPWM(0,0,0);
 						pwm2.setPWM(1,0,0);
 						leftCount = 0;
@@ -209,12 +212,12 @@ while (leftFollow){
 					if (rightVal < 150){
 						pwm1.setPWM(0, 0, 200);
 						pwm2.setPWM(1,0, 150);
-						usleep(100 * 50);
+						usleep(100 * 5);
 					}
 					else if (rightVal > 250){
 						pwm1.setPWM(0, 0, 150);
 						pwm2.setPWM(1,0, 200);
-						usleep(100 * 50);
+						usleep(100 * 5);
 					}
 				}
 					pwm1.setPWM(0,0,0);
