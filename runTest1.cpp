@@ -65,7 +65,7 @@ u_result capture_and_display(RPlidarDriver* drv){
 
 bool canLeft(){
   if(leftVal > 300){
-  if(leftCount > 1){
+  if(leftCount < 1){
 		cout << "canLeft" << endl;
     return true;
   }
@@ -139,7 +139,7 @@ while (leftFollow){
 		if(canLeft()){
 			pwm1.setPWM(0,0, 150);
 			pwm2.setPWM(1,0, 600);
-			usleep(100 * 5);
+			usleep(100 * 50);
 			pwm1.setPWM(0,0,0);
 			pwm2.setPWM(1,0,0);
 			leftCount++;
@@ -149,7 +149,7 @@ while (leftFollow){
 		else if(canRight()){
 			pwm1.setPWM(0,0, 600);
 			pwm2.setPWM(1,0, 150);
-			usleep(100 * 5);
+			usleep(100 * 50);
 			pwm1.setPWM(0,0,0);
 			pwm2.setPWM(1,0,0);
 			rightCount++;
@@ -160,7 +160,7 @@ while (leftFollow){
 		else if(canForward()){
 			pwm1.setPWM(0,0, 150);
 			pwm2.setPWM(1,0, 150);
-			usleep(100 * 5);
+			usleep(100 * 50);
 			pwm1.setPWM(0,0,0);
 			pwm2.setPWM(1,0,0);
 			leftCount = 0;
@@ -170,13 +170,13 @@ while (leftFollow){
 		if (leftVal < 150){
 			pwm1.setPWM(0, 0, 150);
 			pwm2.setPWM(1,0, 200);
-			usleep(100 * 5);
+			usleep(100 * 50);
 			break;
 		}
 		if (leftVal > 250){
 			pwm1.setPWM(0, 0, 200);
 			pwm2.setPWM(1,0, 150);
-			usleep(100 * 5);
+			usleep(100 * 50);
 			break;
 		}
 	}
@@ -190,7 +190,7 @@ while (leftFollow){
 					if(canLeft()){
 						pwm1.setPWM(0,0, 150);
 						pwm2.setPWM(1,0, 600);
-						usleep(100 * 5);
+						usleep(100 * 50);
 						pwm1.setPWM(0,0,0);
 						pwm2.setPWM(1,0,0);
 						leftCount++;
@@ -201,7 +201,7 @@ while (leftFollow){
 					else if(canRight()){
 						pwm1.setPWM(0,0, 600);
 						pwm2.setPWM(1,0, 150);
-						usleep(100 * 5);
+						usleep(100 * 50);
 						pwm1.setPWM(0,0,0);
 						pwm2.setPWM(1,0,0);
 						rightCount++;
@@ -212,7 +212,7 @@ while (leftFollow){
 					else if(canForward()){
 						pwm1.setPWM(0,0, 150);
 						pwm2.setPWM(1,0, 150);
-						usleep(100 * 5);
+						usleep(100 * 50);
 						pwm1.setPWM(0,0,0);
 						pwm2.setPWM(1,0,0);
 						leftCount = 0;
@@ -222,13 +222,13 @@ while (leftFollow){
 					if (rightVal < 150){
 						pwm1.setPWM(0, 0, 200);
 						pwm2.setPWM(1,0, 150);
-						usleep(100 * 5);
+						usleep(100 * 50);
 						break;
 					}
 					else if (rightVal > 250){
 						pwm1.setPWM(0, 0, 150);
 						pwm2.setPWM(1,0, 200);
-						usleep(100 * 5);
+						usleep(100 * 50);
 						break;
 					}
 				}
