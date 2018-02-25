@@ -1,13 +1,20 @@
-CXX ?= g++
+#------------------------------------------------------------------------------
 
-CXXFLAGS += -c -Wall $(shell pkg-config --cflags opencv)
-LDFLAGS += $(shell pkg-config --libs opencv)
+SOURCE=runTest1.cpp
+PROGRAM=runTest1
+INCLUDESPATH=/home/pi/Downloads/lidar_sdk/sdk/sdk/include
+INCLUDES=-rplidar.h -rplidar_driver.h -rplidar_protocol.h -rptypes.h -rplidar_cmd.h
+LIBRARIESPATH=/home/pi/Downloads/lidar_sdk/sdk/output/Linux/Release
+LIBRARIES= lrplidar_sdk
+CC=g++
 
-all: opencv_runTest1
+#------------------------------------------------------------------------------
+all: $(PROGRAM)
 
-#opencv_runTest1: runTest1.o; $(CXX) $< PCA9685.cpp -L /home/pi/Downloads/lidar_sdk/sdk/output/Linux/Release -lrplidar_sdk -pthread -o $@ $(LDFLAGS)
-opencv_runTest1: runTest1.o; $(CXX) $< PCA9685.cpp -L /home/pi/Downloads/lidar_sdk/sdk/output/Linux/Release -lrplidar_sdk -pthread -o $@ $(LDFLAGS)
+$(PROGRAM): $(SOURCE)
 
-%.o: %.cpp; $(CXX) $< -o $@ $(CXXFLAGS)
+	$(CC) $(SOURCE) -L $(LIBRARIESPATH) -$(LIBRARIES) -pthread -PCA9685.cpp -o$(PROGRAM)
 
-clean: ; rm -f runTest1.o opencv_runTest1
+clean:
+
+	rm -f $(PROGRAM)
