@@ -34,6 +34,9 @@ u_result capture_and_display(RPlidarDriver* drv){
 	ans = drv->grabScanData(nodes, count);
 	if (IS_OK(ans) || ans == RESULT_OPERATION_TIMEOUT) {
 			drv->ascendScanData(nodes, count);
+			frontVal = nodes[180].distance_q2/4.0f;
+			leftVal = nodes[90].distance_q2/4.0f;
+			rightVal = nodes[270].distance_q2/4.0f;
 					for (int pos = 0; pos < (int)count ; ++pos) {
 									if (pos >= 179 && pos <= 181){
 										if (nodes[pos].distance_q2/4.0f < frontVal){
