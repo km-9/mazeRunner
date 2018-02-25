@@ -35,11 +35,6 @@ u_result capture_and_display(RPlidarDriver* drv){
 	ans = drv->grabScanData(nodes, count);
 	if (IS_OK(ans) || ans == RESULT_OPERATION_TIMEOUT) {
 			drv->ascendScanData(nodes, count);
-			//plot_histogram(nodes, count);
-
-			printf("Do you want to see all the data? (y/n) ");
-			int key = getchar();
-			if (key == 'Y' || key == 'y') {
 					for (int pos = 0; pos < (int)count ; ++pos) {
 									if (pos >= 170 && pos <= 190){
 										if (nodes[pos].distance_q2/4.0f < frontVal){
@@ -58,10 +53,9 @@ u_result capture_and_display(RPlidarDriver* drv){
 									}
 					}
 			}
-	} else {
+	 else {
 			printf("error code: %x\n", ans);
 	}
-
 	return ans;
 }
 
@@ -91,7 +85,6 @@ if(frontVal > 250){
 }
 
 int main (int argc, char const *argv[]) {
-
 	PCA9685 pwm1;
 	pwm1.init(1,0x40);
 
@@ -106,7 +99,6 @@ int main (int argc, char const *argv[]) {
     int opt_com_baudrate = 115200;
     const char * opt_com_path = "/dev/ttyUSB0";
     RPlidarDriver * drv = RPlidarDriver::CreateDriver(RPlidarDriver::DRIVER_TYPE_SERIALPORT);
-
 		do {
         // try to connect
         if (IS_FAIL(drv->connect(opt_com_path, opt_com_baudrate))) {
@@ -129,7 +121,7 @@ int main (int argc, char const *argv[]) {
             break;
 
         }
-			}while (false);
+			}while(0);
 
 while (leftFollow){
 	while(!canLeft && !canRight && canForward){
