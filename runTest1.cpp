@@ -127,8 +127,8 @@ int main (int argc, char const *argv[]) {
 			}while(0);
 
 while (leftFollow){
-	cout << "leftfoolow" << endl;
-	while(!canLeft && !canRight && canForward){
+	cout << "leftfollow" << endl;
+	//while(!canLeft && !canRight && canForward){
 		capture_and_display(drv);
 		if(canLeft()){
 			pwm1.setPWM(0,0, 150);
@@ -160,13 +160,13 @@ while (leftFollow){
 			pwm2.setPWM(1,0, 150);
 			usleep(50 * 50);
 		}
-		pwm1.setPWM(0,0,0);
-		pwm2.setPWM(1,0,0);
-	}
+		//pwm1.setPWM(0,0,0);
+		//pwm2.setPWM(1,0,0);
+//	}
 	}
 	while(!leftFollow){
 		cout << "!leftfoolow" << endl;
-				while(!canLeft && !canRight && canForward){
+			//	while(!canLeft && !canRight && canForward){
 					capture_and_display(drv);
 					if(canLeft()){
 						pwm1.setPWM(0,0, 150);
@@ -193,14 +193,15 @@ while (leftFollow){
 						pwm2.setPWM(1,0, 150);
 						usleep(50 * 50);
 					}
-					if (rightVal > 250){
+					else if (rightVal > 250){
 						pwm1.setPWM(0, 0, 150);
 						pwm2.setPWM(1,0, 200);
 						usleep(50 * 50);
 					}
-					pwm1.setPWM(0,0,0);
-					pwm2.setPWM(1,0,0);
-				}
+
+					//pwm1.setPWM(0,0,0);
+					//pwm2.setPWM(1,0,0);
+		//		}
 
 	}
     drv->stop();
