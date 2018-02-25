@@ -75,6 +75,7 @@ u_result capture_and_display(RPlidarDriver* drv){
 
 bool canLeft(){
 	cout << "leftCall" << endl;
+	cout << leftVal << endl;
   if(leftVal > 300){
   if(leftCount < 1){
 		cout << "canLeft" << endl;
@@ -86,6 +87,7 @@ bool canLeft(){
 
 bool canRight(){
 cout << "rightCall" << endl;
+cout << rightVal << endl;
 if(rightVal > 300){
  if(rightCount < 1){
 	 cout << "canRight" << endl;
@@ -97,6 +99,7 @@ if(rightVal > 300){
 
 bool canForward(){
 		cout << "forwardCall" << endl;
+		cout << frontVal << endl;
 if(frontVal > 300){
 	cout << "canForward" << endl;
  return true;
