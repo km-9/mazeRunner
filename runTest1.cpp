@@ -35,17 +35,17 @@ u_result capture_and_display(RPlidarDriver* drv){
 	if (IS_OK(ans) || ans == RESULT_OPERATION_TIMEOUT) {
 			drv->ascendScanData(nodes, count);
 					for (int pos = 0; pos < (int)count ; ++pos) {
-									if (pos >= 170 && pos <= 190){
+									if (pos >= 179 && pos <= 181){
 										if (nodes[pos].distance_q2/4.0f < frontVal){
 											frontVal = nodes[pos].distance_q2/4.0f;
 										}
 									}
-									if (pos >= 85 && pos <= 95){
+									if (pos >= 89 && pos <= 91){
 										if (nodes[pos].distance_q2/4.0f < leftVal){
 											leftVal = nodes[pos].distance_q2/4.0f;
 										}
 									}
-									if (pos >= 265 && pos <= 275){
+									if (pos >= 269 && pos <= 271){
 										if (nodes[pos].distance_q2/4.0f < rightVal){
 											rightVal = nodes[pos].distance_q2/4.0f;
 										}
@@ -64,6 +64,7 @@ u_result capture_and_display(RPlidarDriver* drv){
 }
 
 bool canLeft(){
+	cout << "canLeft" << endl;
   if(leftVal > 300){
   if(leftCount > 1){
     return true;
@@ -73,6 +74,7 @@ bool canLeft(){
 }
 
 bool canRight(){
+	cout << "canRight" << endl;
 if(rightVal > 300){
  if(rightCount < 1){
    return true;
@@ -82,6 +84,7 @@ if(rightVal > 300){
 }
 
 bool canForward(){
+	cout << "canForward" << endl;
 if(frontVal > 250){
  return true;
 }
