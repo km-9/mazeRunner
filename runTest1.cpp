@@ -38,23 +38,33 @@ u_result capture_and_display(RPlidarDriver* drv){
 									if (pos >= 179 && pos <= 181){
 										if (nodes[pos].distance_q2/4.0f < frontVal){
 											frontVal = nodes[pos].distance_q2/4.0f;
+											printf("%s theta: %03.2f Dist: %08.2f Q: %d \n",
+				                  (nodes[pos].sync_quality & RPLIDAR_RESP_MEASUREMENT_SYNCBIT) ?"S ":"  ",
+				                  (nodes[pos].angle_q6_checkbit >> RPLIDAR_RESP_MEASUREMENT_ANGLE_SHIFT)/64.0f,
+				                  nodes[pos].distance_q2/4.0f,
+				                  nodes[pos].sync_quality >> RPLIDAR_RESP_MEASUREMENT_QUALITY_SHIFT);
 										}
 									}
 									if (pos >= 89 && pos <= 91){
 										if (nodes[pos].distance_q2/4.0f < leftVal){
 											leftVal = nodes[pos].distance_q2/4.0f;
+											printf("%s theta: %03.2f Dist: %08.2f Q: %d \n",
+				                  (nodes[pos].sync_quality & RPLIDAR_RESP_MEASUREMENT_SYNCBIT) ?"S ":"  ",
+				                  (nodes[pos].angle_q6_checkbit >> RPLIDAR_RESP_MEASUREMENT_ANGLE_SHIFT)/64.0f,
+				                  nodes[pos].distance_q2/4.0f,
+				                  nodes[pos].sync_quality >> RPLIDAR_RESP_MEASUREMENT_QUALITY_SHIFT);
 										}
 									}
 									if (pos >= 269 && pos <= 271){
 										if (nodes[pos].distance_q2/4.0f < rightVal){
 											rightVal = nodes[pos].distance_q2/4.0f;
+											printf("%s theta: %03.2f Dist: %08.2f Q: %d \n",
+				                  (nodes[pos].sync_quality & RPLIDAR_RESP_MEASUREMENT_SYNCBIT) ?"S ":"  ",
+				                  (nodes[pos].angle_q6_checkbit >> RPLIDAR_RESP_MEASUREMENT_ANGLE_SHIFT)/64.0f,
+				                  nodes[pos].distance_q2/4.0f,
+				                  nodes[pos].sync_quality >> RPLIDAR_RESP_MEASUREMENT_QUALITY_SHIFT);
 										}
 									}
-									printf("%s theta: %03.2f Dist: %08.2f Q: %d \n",
-		                  (nodes[pos].sync_quality & RPLIDAR_RESP_MEASUREMENT_SYNCBIT) ?"S ":"  ",
-		                  (nodes[pos].angle_q6_checkbit >> RPLIDAR_RESP_MEASUREMENT_ANGLE_SHIFT)/64.0f,
-		                  nodes[pos].distance_q2/4.0f,
-		                  nodes[pos].sync_quality >> RPLIDAR_RESP_MEASUREMENT_QUALITY_SHIFT);
 					}
 			}
 	 else {
@@ -64,6 +74,7 @@ u_result capture_and_display(RPlidarDriver* drv){
 }
 
 bool canLeft(){
+	cout << "leftCall" << endl;
   if(leftVal > 300){
   if(leftCount < 1){
 		cout << "canLeft" << endl;
@@ -74,6 +85,7 @@ bool canLeft(){
 }
 
 bool canRight(){
+cout << "rightCall" << endl;
 if(rightVal > 300){
  if(rightCount < 1){
 	 cout << "canRight" << endl;
@@ -84,6 +96,7 @@ if(rightVal > 300){
 }
 
 bool canForward(){
+		cout << "forwardCall" << endl;
 if(frontVal > 300){
 	cout << "canForward" << endl;
  return true;
