@@ -64,9 +64,9 @@ u_result capture_and_display(RPlidarDriver* drv){
 }
 
 bool canLeft(){
-	cout << "canLeft" << endl;
   if(leftVal > 300){
   if(leftCount > 1){
+		cout << "canLeft" << endl;
     return true;
   }
 }
@@ -74,9 +74,9 @@ bool canLeft(){
 }
 
 bool canRight(){
-	cout << "canRight" << endl;
 if(rightVal > 300){
  if(rightCount < 1){
+	 cout << "canRight" << endl;
    return true;
  }
 }
@@ -84,8 +84,8 @@ if(rightVal > 300){
 }
 
 bool canForward(){
+if(frontVal > 300){
 	cout << "canForward" << endl;
-if(frontVal > 250){
  return true;
 }
  return false;
@@ -155,6 +155,7 @@ while (leftFollow){
 			rightCount++;
 			leftCount = 0;
 			leftFollow = false;
+			break;
 		}
 		else if(canForward()){
 			pwm1.setPWM(0,0, 150);
@@ -164,16 +165,19 @@ while (leftFollow){
 			pwm2.setPWM(1,0,0);
 			leftCount = 0;
 			rightCount = 0;
+			break;
 		}
 		if (leftVal < 150){
 			pwm1.setPWM(0, 0, 150);
 			pwm2.setPWM(1,0, 200);
 			usleep(100 * 5);
+			break;
 		}
 		if (leftVal > 250){
 			pwm1.setPWM(0, 0, 200);
 			pwm2.setPWM(1,0, 150);
 			usleep(100 * 5);
+			break;
 		}
 	}
 		pwm1.setPWM(0,0,0);
@@ -192,6 +196,7 @@ while (leftFollow){
 						leftCount++;
 						rightCount = 0;
 						leftFollow = true;
+						break;
 					}
 					else if(canRight()){
 						pwm1.setPWM(0,0, 600);
@@ -202,6 +207,7 @@ while (leftFollow){
 						rightCount++;
 						leftCount = 0;
 						leftFollow = false;
+						break;
 					}
 					else if(canForward()){
 						pwm1.setPWM(0,0, 150);
@@ -211,16 +217,19 @@ while (leftFollow){
 						pwm2.setPWM(1,0,0);
 						leftCount = 0;
 						rightCount = 0;
+						break;
 					}
 					if (rightVal < 150){
 						pwm1.setPWM(0, 0, 200);
 						pwm2.setPWM(1,0, 150);
 						usleep(100 * 5);
+						break;
 					}
 					else if (rightVal > 250){
 						pwm1.setPWM(0, 0, 150);
 						pwm2.setPWM(1,0, 200);
 						usleep(100 * 5);
+						break;
 					}
 				}
 					pwm1.setPWM(0,0,0);
