@@ -151,7 +151,7 @@ int main (int argc, char const *argv[]) {
 				cout << "end of lidar driver in main" << endl;
 			}while(0);
 while(true){
-while (leftFollow){
+while (true){
 	cout << "leftfollow" << endl;
 	while(canLeft || canForward || canRight){
 		capture_and_display(drv);
@@ -199,7 +199,7 @@ while (leftFollow){
 		pwm1.setPWM(0,0,0);
 		pwm2.setPWM(1,0,0);
 	}
-	while(!leftFollow){
+	while(0){
 		cout << "!leftfollow" << endl;
 			while(canLeft || canForward || canRight){
 					capture_and_display(drv);
