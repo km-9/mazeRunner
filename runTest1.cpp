@@ -77,7 +77,7 @@ if(rightVal > 300){
  //if(rightCount < 1){
 	 cout << "canRight" << endl;
    return true;
- }
+// }
 }
  return false;
 }
