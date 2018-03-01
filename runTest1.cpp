@@ -153,14 +153,17 @@ int main (int argc, char const *argv[]) {
 while(true){
 		capture_and_display(drv);
 			while (canLeft){
+				capture_and_display(drv);
 				pwm1.setPWM(0,0,600);
 		    pwm2.setPWM(1,0,400);
 			}
 			while (canRight){
+				capture_and_display(drv);
 				pwm1.setPWM(0,0,400);
 		    pwm2.setPWM(1,0,600);
 			}
 			while (canForward){
+				capture_and_display(drv);
 				pwm1.setPWM(0,0,150);
 		    pwm2.setPWM(1,0,600);
 			}
