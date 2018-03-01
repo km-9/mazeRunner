@@ -34,12 +34,11 @@ u_result capture_and_display(RPlidarDriver* drv){
 	ans = drv->grabScanData(nodes, count);
 	if (IS_OK(ans) || ans == RESULT_OPERATION_TIMEOUT) {
 			drv->ascendScanData(nodes, count);
-			frontVal = 400;
-			leftVal = 400;
-			rightVal = 400;
+			frontVal = 1;
+			leftVal = 1;
+			rightVal = 1;
 					for (int pos = 0; pos < (int)count ; ++pos) {
-									if (pos >= 178 && pos <= 182){
-										if (nodes[pos].distance_q2/4.0f < frontVal){
+									if (pos == 180){
 											rightVal = nodes[pos].distance_q2/4.0f;
 											printf("%s theta: %03.2f Dist: %08.2f Q: %d \n",
 				                  (nodes[pos].sync_quality & RPLIDAR_RESP_MEASUREMENT_SYNCBIT) ?"S ":"  ",
@@ -47,9 +46,7 @@ u_result capture_and_display(RPlidarDriver* drv){
 				                  nodes[pos].distance_q2/4.0f,
 				                  nodes[pos].sync_quality >> RPLIDAR_RESP_MEASUREMENT_QUALITY_SHIFT);
 										}
-									}
 									if (pos >= 88 && pos <= 92){
-										if (nodes[pos].distance_q2/4.0f < leftVal){
 											leftVal = nodes[pos].distance_q2/4.0f;
 											printf("%s theta: %03.2f Dist: %08.2f Q: %d \n",
 				                  (nodes[pos].sync_quality & RPLIDAR_RESP_MEASUREMENT_SYNCBIT) ?"S ":"  ",
@@ -57,16 +54,13 @@ u_result capture_and_display(RPlidarDriver* drv){
 				                  nodes[pos].distance_q2/4.0f,
 				                  nodes[pos].sync_quality >> RPLIDAR_RESP_MEASUREMENT_QUALITY_SHIFT);
 										}
-									}
 									if (pos >= 268 && pos <= 272){
-										if (nodes[pos].distance_q2/4.0f < rightVal){
 											frontVal = nodes[pos].distance_q2/4.0f;
 											printf("%s theta: %03.2f Dist: %08.2f Q: %d \n",
 				                  (nodes[pos].sync_quality & RPLIDAR_RESP_MEASUREMENT_SYNCBIT) ?"S ":"  ",
 				                  (nodes[pos].angle_q6_checkbit >> RPLIDAR_RESP_MEASUREMENT_ANGLE_SHIFT)/64.0f,
 				                  nodes[pos].distance_q2/4.0f,
 				                  nodes[pos].sync_quality >> RPLIDAR_RESP_MEASUREMENT_QUALITY_SHIFT);
-										}
 									}
 					}
 			}
