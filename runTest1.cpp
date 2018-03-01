@@ -85,7 +85,7 @@ if(rightVal > 200 && !canLeft()){
 bool canForward(){
 		cout << "forwardCall" << endl;
 		cout << frontVal << endl;
-if(frontVal > 300){
+if(frontVal > 175){
 	cout << "canForward" << endl;
  return true;
 }
@@ -137,12 +137,12 @@ while(true){
 		capture_and_display(drv);
 		pwm1.setPWM(0, 0, 150);
 		pwm2.setPWM(1, 0, 600);
-			if (canLeft()){
+			if (leftVal > 201){
 				pwm1.setPWM(0,0,150);
 		    pwm2.setPWM(1,0,50);
 				capture_and_display(drv);
 			}
-			else if (canRight()){
+			if (leftVal < 199{
 				pwm1.setPWM(0, 0, 550);
 				pwm2.setPWM(1, 0, 600);
 				capture_and_display(drv);
