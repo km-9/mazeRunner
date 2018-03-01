@@ -40,7 +40,7 @@ u_result capture_and_display(RPlidarDriver* drv){
 					for (int pos = 0; pos < (int)count ; ++pos) {
 									if (pos >= 179 && pos <= 181){
 										if (nodes[pos].distance_q2/4.0f < frontVal){
-											frontVal = nodes[pos].distance_q2/4.0f;
+											rightVal = nodes[pos].distance_q2/4.0f;
 											printf("%s theta: %03.2f Dist: %08.2f Q: %d \n",
 				                  (nodes[pos].sync_quality & RPLIDAR_RESP_MEASUREMENT_SYNCBIT) ?"S ":"  ",
 				                  (nodes[pos].angle_q6_checkbit >> RPLIDAR_RESP_MEASUREMENT_ANGLE_SHIFT)/64.0f,
@@ -50,7 +50,7 @@ u_result capture_and_display(RPlidarDriver* drv){
 									}
 									if (pos >= 89 && pos <= 91){
 										if (nodes[pos].distance_q2/4.0f < leftVal){
-											rightVal = nodes[pos].distance_q2/4.0f;
+											leftVal = nodes[pos].distance_q2/4.0f;
 											printf("%s theta: %03.2f Dist: %08.2f Q: %d \n",
 				                  (nodes[pos].sync_quality & RPLIDAR_RESP_MEASUREMENT_SYNCBIT) ?"S ":"  ",
 				                  (nodes[pos].angle_q6_checkbit >> RPLIDAR_RESP_MEASUREMENT_ANGLE_SHIFT)/64.0f,
@@ -60,7 +60,7 @@ u_result capture_and_display(RPlidarDriver* drv){
 									}
 									if (pos >= 269 && pos <= 271){
 										if (nodes[pos].distance_q2/4.0f < rightVal){
-											leftVal = nodes[pos].distance_q2/4.0f;
+											frontVal = nodes[pos].distance_q2/4.0f;
 											printf("%s theta: %03.2f Dist: %08.2f Q: %d \n",
 				                  (nodes[pos].sync_quality & RPLIDAR_RESP_MEASUREMENT_SYNCBIT) ?"S ":"  ",
 				                  (nodes[pos].angle_q6_checkbit >> RPLIDAR_RESP_MEASUREMENT_ANGLE_SHIFT)/64.0f,
@@ -150,106 +150,17 @@ int main (int argc, char const *argv[]) {
         }
 				cout << "end of lidar driver in main" << endl;
 			}while(0);
-while(true){
 while (true){
-	cout << "leftfollow" << endl;
-	while(canLeft || canForward || canRight){
-		capture_and_display(drv);
-		cout << "leftfollowinner" << endl;
-		if(canLeft()){
-			pwm1.setPWM(0,0, 150);
-			pwm2.setPWM(1,0, 600);
-			//usleep(1000 * 1000);
-			pwm1.setPWM(0,0,0);
-			pwm2.setPWM(1,0,0);
-			leftCount++;
-			rightCount = 0;
-			leftFollow = true;
-		}
-		else if(canRight()){
-			pwm1.setPWM(0,0, 600);
-			pwm2.setPWM(1,0, 150);
-			//usleep(1000 * 1000);
-			pwm1.setPWM(0,0,0);
-			pwm2.setPWM(1,0,0);
-			rightCount++;
-			leftCount = 0;
-			leftFollow = false;
-		}
-		else if(canForward()){
-			pwm1.setPWM(0,0, 150);
-			pwm2.setPWM(1,0, 150);
-			//usleep(1000 * 1000);
-			pwm1.setPWM(0,0,0);
-			pwm2.setPWM(1,0,0);
-			leftCount = 0;
-			rightCount = 0;
-		}
-		if (leftVal < 150){
-			pwm1.setPWM(0, 0, 150);
-			pwm2.setPWM(1,0, 0);
-			//usleep(1000 * 100);
-		}
-		if (leftVal > 250){
-			pwm1.setPWM(0, 0, 0);
-			pwm2.setPWM(1,0, 150);
-			//usleep(1000 * 100);
-		}
+	while (canLeft){
+		pwm1.setPWM(0,0,600);
+    pwm2.setPWM(1,0,400);
 	}
-		pwm1.setPWM(0,0,0);
-		pwm2.setPWM(1,0,0);
+	while (canRight){
+		pwm1.setPWM(0,0,400);
+    pwm2.setPWM(1,0,600);
 	}
-	while(0){
-		cout << "!leftfollow" << endl;
-			while(canLeft || canForward || canRight){
-					capture_and_display(drv);
-					if(canLeft()){
-						pwm1.setPWM(0,0, 150);
-						pwm2.setPWM(1,0, 600);
-						//usleep(1000 * 1000);
-						pwm1.setPWM(0,0,0);
-						pwm2.setPWM(1,0,0);
-						leftCount++;
-						rightCount = 0;
-						leftFollow = true;
-					}
-					else if(canRight()){
-						pwm1.setPWM(0,0, 600);
-						pwm2.setPWM(1,0, 150);
-						//usleep(1000 * 1000);
-						pwm1.setPWM(0,0,0);
-						pwm2.setPWM(1,0,0);
-						rightCount++;
-						leftCount = 0;
-						leftFollow = false;
-					}
-					else if(canForward()){
-						pwm1.setPWM(0,0, 150);
-						pwm2.setPWM(1,0, 150);
-						//usleep(1000 * 1000);
-						pwm1.setPWM(0,0,0);
-						pwm2.setPWM(1,0,0);
-						leftCount = 0;
-						rightCount = 0;
-					}
-					if (rightVal < 150){
-						pwm1.setPWM(0, 0, 0);
-						pwm2.setPWM(1,0, 150);
-						//usleep(1000 * 100);
-					}
-					else if (rightVal > 250){
-						pwm1.setPWM(0, 0, 150);
-						pwm2.setPWM(1,0, 0);
-						//usleep(1000 * 100);
-					}
-				}
-					pwm1.setPWM(0,0,0);
-					pwm2.setPWM(1,0,0);
+	while (canForward){
+		pwm1.setPWM(0,0,150);
+    pwm2.setPWM(1,0,600)
 	}
 }
-    drv->stop();
-    drv->stopMotor();
-
-    RPlidarDriver::DisposeDriver(drv);
-    return 0;
-  }
