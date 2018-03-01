@@ -150,19 +150,24 @@ int main (int argc, char const *argv[]) {
         }
 				cout << "end of lidar driver in main" << endl;
 			}while(0);
-while (true){
-	u_result ucap = capture_and_display(drv);
-	while (canLeft){
-		pwm1.setPWM(0,0,600);
-    pwm2.setPWM(1,0,400);
-	}
-	while (canRight){
-		pwm1.setPWM(0,0,400);
-    pwm2.setPWM(1,0,600);
-	}
-	while (canForward){
-		pwm1.setPWM(0,0,150);
-    pwm2.setPWM(1,0,600);
-	}
+while(true){
+		capture_and_display(drv);
+			while (canLeft){
+				pwm1.setPWM(0,0,600);
+		    pwm2.setPWM(1,0,400);
+			}
+			while (canRight){
+				pwm1.setPWM(0,0,400);
+		    pwm2.setPWM(1,0,600);
+			}
+			while (canForward){
+				pwm1.setPWM(0,0,150);
+		    pwm2.setPWM(1,0,600);
+			}
 }
-}
+    drv->stop();
+    drv->stopMotor();
+
+    RPlidarDriver::DisposeDriver(drv);
+    return 0;
+  }
