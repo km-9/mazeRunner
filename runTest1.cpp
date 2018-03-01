@@ -159,7 +159,7 @@ while (leftFollow){
 		if(canLeft()){
 			pwm1.setPWM(0,0, 150);
 			pwm2.setPWM(1,0, 600);
-			usleep(1000 * 1000);
+			//usleep(1000 * 1000);
 			pwm1.setPWM(0,0,0);
 			pwm2.setPWM(1,0,0);
 			leftCount++;
@@ -169,7 +169,7 @@ while (leftFollow){
 		else if(canRight()){
 			pwm1.setPWM(0,0, 600);
 			pwm2.setPWM(1,0, 150);
-			usleep(1000 * 1000);
+			//usleep(1000 * 1000);
 			pwm1.setPWM(0,0,0);
 			pwm2.setPWM(1,0,0);
 			rightCount++;
@@ -179,7 +179,7 @@ while (leftFollow){
 		else if(canForward()){
 			pwm1.setPWM(0,0, 150);
 			pwm2.setPWM(1,0, 150);
-			usleep(1000 * 1000);
+			//usleep(1000 * 1000);
 			pwm1.setPWM(0,0,0);
 			pwm2.setPWM(1,0,0);
 			leftCount = 0;
@@ -188,12 +188,12 @@ while (leftFollow){
 		if (leftVal < 150){
 			pwm1.setPWM(0, 0, 150);
 			pwm2.setPWM(1,0, 0);
-			usleep(1000 * 100);
+			//usleep(1000 * 100);
 		}
 		if (leftVal > 250){
 			pwm1.setPWM(0, 0, 0);
 			pwm2.setPWM(1,0, 150);
-			usleep(1000 * 100);
+			//usleep(1000 * 100);
 		}
 	}
 		pwm1.setPWM(0,0,0);
@@ -206,7 +206,7 @@ while (leftFollow){
 					if(canLeft()){
 						pwm1.setPWM(0,0, 150);
 						pwm2.setPWM(1,0, 600);
-						usleep(1000 * 1000);
+						//usleep(1000 * 1000);
 						pwm1.setPWM(0,0,0);
 						pwm2.setPWM(1,0,0);
 						leftCount++;
@@ -216,7 +216,7 @@ while (leftFollow){
 					else if(canRight()){
 						pwm1.setPWM(0,0, 600);
 						pwm2.setPWM(1,0, 150);
-						usleep(1000 * 1000);
+						//usleep(1000 * 1000);
 						pwm1.setPWM(0,0,0);
 						pwm2.setPWM(1,0,0);
 						rightCount++;
@@ -226,7 +226,7 @@ while (leftFollow){
 					else if(canForward()){
 						pwm1.setPWM(0,0, 150);
 						pwm2.setPWM(1,0, 150);
-						usleep(1000 * 1000);
+						//usleep(1000 * 1000);
 						pwm1.setPWM(0,0,0);
 						pwm2.setPWM(1,0,0);
 						leftCount = 0;
@@ -235,12 +235,12 @@ while (leftFollow){
 					if (rightVal < 150){
 						pwm1.setPWM(0, 0, 0);
 						pwm2.setPWM(1,0, 150);
-						usleep(1000 * 100);
+						//usleep(1000 * 100);
 					}
 					else if (rightVal > 250){
 						pwm1.setPWM(0, 0, 150);
 						pwm2.setPWM(1,0, 0);
-						usleep(1000 * 100);
+						//usleep(1000 * 100);
 					}
 				}
 					pwm1.setPWM(0,0,0);
