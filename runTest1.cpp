@@ -177,8 +177,8 @@ while (leftFollow){
 			leftFollow = false;
 		}
 		else if(canForward()){
-			pwm1.setPWM(0,0, 600);
-			pwm2.setPWM(1,0, 600);
+			pwm1.setPWM(0,0, 150);
+			pwm2.setPWM(1,0, 150);
 			usleep(1000 * 1000);
 			pwm1.setPWM(0,0,0);
 			pwm2.setPWM(1,0,0);
@@ -224,8 +224,8 @@ while (leftFollow){
 						leftFollow = false;
 					}
 					else if(canForward()){
-						pwm1.setPWM(0,0, 600);
-						pwm2.setPWM(1,0, 600);
+						pwm1.setPWM(0,0, 150);
+						pwm2.setPWM(1,0, 150);
 						usleep(1000 * 1000);
 						pwm1.setPWM(0,0,0);
 						pwm2.setPWM(1,0,0);
