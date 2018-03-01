@@ -133,36 +133,24 @@ int main (int argc, char const *argv[]) {
 				cout << "end of lidar driver in main" << endl;
 			}while(0);
 while(true){
+	capture_and_display(drv);
 	while (canForward()){
 		capture_and_display(drv);
 		pwm1.setPWM(0, 0, 150);
 		pwm2.setPWM(1, 0, 600);
-			if (leftVal > 201){
+			if (leftVal > 250){
 				pwm1.setPWM(0,0,150);
-		    pwm2.setPWM(1,0,50);
-				capture_and_display(drv);
+		    pwm2.setPWM(1,0,149);
+				//capture_and_display(drv);
 			}
-			if (leftVal < 199){
-				pwm1.setPWM(0, 0, 550);
+			if (leftVal < 200){
+				pwm1.setPWM(0, 0, 599);
 				pwm2.setPWM(1, 0, 600);
-				capture_and_display(drv);
+				//capture_and_display(drv);
 			}
 		}
-		while (!canForward()){
-			capture_and_display(drv);
-			pwm1.setPWM(0, 0, 0);
-			pwm2.setPWM(1, 0, 0);
-				if (canLeft()){
-					pwm1.setPWM(0,0,150);
-			    pwm2.setPWM(1,0,0);
-					capture_and_display(drv);
-				}
-				else if (canRight()){
-					pwm1.setPWM(0, 0, 0);
-					pwm2.setPWM(1, 0, 600);
-					capture_and_display(drv);
-				}
-			}
+		pwm1.setPWM(0, 0, 0);
+		pwm2.setPWM(1, 0, 0);
 }
     drv->stop();
     drv->stopMotor();
