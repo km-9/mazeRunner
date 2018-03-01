@@ -85,7 +85,7 @@ if(rightVal > 200 && !canLeft()){
 bool canForward(){
 		cout << "forwardCall" << endl;
 		cout << frontVal << endl;
-if(frontVal > 175 || frontVal < 5){
+if(frontVal > 175 || frontVal == 0){
 	cout << "canForward" << endl;
  return true;
 }
@@ -140,18 +140,19 @@ while(true){
 		pwm2.setPWM(1, 0, 600);
 		usleep(1000 * 1000);
 			if (leftVal > 250){
-				pwm1.setPWM(0,0,150);
-		    pwm2.setPWM(1,0,0);
+				pwm1.setPWM(0,0,0);
+		    pwm2.setPWM(1,0,600);
 				usleep(1000 * 500);
 				//capture_and_display(drv);
 			}
 			if (leftVal < 200){
-				pwm1.setPWM(0, 0, 0);
-				pwm2.setPWM(1, 0, 600);
+				pwm1.setPWM(0, 0, 150);
+				pwm2.setPWM(1, 0, 0);
 				usleep(1000 * 500);
 				//capture_and_display(drv);
 			}
 		}
+		if (!canForward){
 		pwm1.setPWM(0, 0, 0);
 		pwm2.setPWM(1, 0, 0);
 		usleep(1000 * 1000);
@@ -163,6 +164,7 @@ while(true){
 		pwm1.setPWM(0, 0, 0);
 		pwm2.setPWM(1, 0, 600);
 		usleep(1000 * 1000);
+	}
 }
     drv->stop();
     drv->stopMotor();
