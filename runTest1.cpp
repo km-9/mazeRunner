@@ -138,16 +138,19 @@ while(true){
 			//	capture_and_display(drv);
 				pwm1.setPWM(0,0,600);
 		    pwm2.setPWM(1,0,400);
+				capture_and_display(drv);
 			}
-			if (canRight() && !canLeft() && rightVal < 400){
+			else if (canRight() && !canForward()){
 			//	capture_and_display(drv);
 				pwm1.setPWM(0,0,400);
 		    pwm2.setPWM(1,0,600);
+				capture_and_display(drv);
 			}
-			while (canForward() && !canLeft()){
+			else if (canForward()){
 				//capture_and_display(drv);
 				pwm1.setPWM(0,0,150);
 		    pwm2.setPWM(1,0,600);
+				capture_and_display(drv);
 			}
 }
     drv->stop();
