@@ -142,7 +142,7 @@ while(true){
 		    pwm2.setPWM(1,0,50);
 				capture_and_display(drv);
 			}
-			if (leftVal < 199{
+			if (leftVal < 199){
 				pwm1.setPWM(0, 0, 550);
 				pwm2.setPWM(1, 0, 600);
 				capture_and_display(drv);
