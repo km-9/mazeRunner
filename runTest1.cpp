@@ -161,7 +161,7 @@ while (true){
 	}
 	while (canForward){
 		pwm1.setPWM(0,0,150);
-    pwm2.setPWM(1,0,600)
+    pwm2.setPWM(1,0,600);
 	}
 }
 }
