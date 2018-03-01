@@ -135,6 +135,8 @@ int main (int argc, char const *argv[]) {
 while(true){
 	while (canForward()){
 		capture_and_display(drv);
+		pwm1.setPWM(0, 0, 150);
+		pwm2.setPWM(1, 0, 600);
 			if (canLeft()){
 				pwm1.setPWM(0,0,150);
 		    pwm2.setPWM(1,0,50);
@@ -144,10 +146,6 @@ while(true){
 				pwm1.setPWM(0, 0, 550);
 				pwm2.setPWM(1, 0, 600);
 				capture_and_display(drv);
-			}
-			else {
-				pwm1.setPWM(0, 0, 150);
-				pwm2.setPWM(1, 0, 600);
 			}
 		}
 		while (!canForward()){
@@ -162,10 +160,8 @@ while(true){
 					pwm2.setPWM(1, 0, 600);
 					capture_and_display(drv);
 				}
-				else {
-					pwm1.setPWM(0, 0, 600);
-					pwm2.setPWM(1, 0, 150);
-				}
+					pwm1.setPWM(0, 0, 0);
+					pwm2.setPWM(1, 0, 0);
 			}
 }
     drv->stop();
