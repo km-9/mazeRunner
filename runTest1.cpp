@@ -142,16 +142,27 @@ while(true){
 			if (leftVal > 250){
 				pwm1.setPWM(0,0,150);
 		    pwm2.setPWM(1,0,0);
-				usleep(1000 * 50);
+				usleep(1000 * 500);
 				//capture_and_display(drv);
 			}
 			if (leftVal < 200){
 				pwm1.setPWM(0, 0, 0);
 				pwm2.setPWM(1, 0, 600);
-				usleep(1000 * 50);
+				usleep(1000 * 500);
 				//capture_and_display(drv);
 			}
 		}
+		pwm1.setPWM(0, 0, 0);
+		pwm2.setPWM(1, 0, 0);
+		usleep(1000 * 1000);
+
+		pwm1.setPWM(0, 0, 600);
+		pwm2.setPWM(1, 0, 150);
+		usleep(1000 * 1000);
+
+		pwm1.setPWM(0, 0, 0);
+		pwm2.setPWM(1, 0, 600);
+		usleep(1000 * 1000);
 }
     drv->stop();
     drv->stopMotor();
