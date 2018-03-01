@@ -34,11 +34,11 @@ u_result capture_and_display(RPlidarDriver* drv){
 	ans = drv->grabScanData(nodes, count);
 	if (IS_OK(ans) || ans == RESULT_OPERATION_TIMEOUT) {
 			drv->ascendScanData(nodes, count);
-			frontVal = nodes[180].distance_q2/4.0f;
-			leftVal = nodes[90].distance_q2/4.0f;
-			rightVal = nodes[270].distance_q2;
+			frontVal = 400;
+			leftVal = 400;
+			rightVal = 400;
 					for (int pos = 0; pos < (int)count ; ++pos) {
-									if (pos >= 179 && pos <= 181){
+									if (pos >= 178 && pos <= 182){
 										if (nodes[pos].distance_q2/4.0f < frontVal){
 											rightVal = nodes[pos].distance_q2/4.0f;
 											printf("%s theta: %03.2f Dist: %08.2f Q: %d \n",
@@ -48,7 +48,7 @@ u_result capture_and_display(RPlidarDriver* drv){
 				                  nodes[pos].sync_quality >> RPLIDAR_RESP_MEASUREMENT_QUALITY_SHIFT);
 										}
 									}
-									if (pos >= 89 && pos <= 91){
+									if (pos >= 88 && pos <= 92){
 										if (nodes[pos].distance_q2/4.0f < leftVal){
 											leftVal = nodes[pos].distance_q2/4.0f;
 											printf("%s theta: %03.2f Dist: %08.2f Q: %d \n",
@@ -58,7 +58,7 @@ u_result capture_and_display(RPlidarDriver* drv){
 				                  nodes[pos].sync_quality >> RPLIDAR_RESP_MEASUREMENT_QUALITY_SHIFT);
 										}
 									}
-									if (pos >= 269 && pos <= 271){
+									if (pos >= 268 && pos <= 272){
 										if (nodes[pos].distance_q2/4.0f < rightVal){
 											frontVal = nodes[pos].distance_q2/4.0f;
 											printf("%s theta: %03.2f Dist: %08.2f Q: %d \n",
