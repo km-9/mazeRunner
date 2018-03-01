@@ -62,10 +62,10 @@ bool canLeft(){
 	cout << "leftCall" << endl;
 	cout << leftVal << endl;
   if(leftVal > 300){
-  if(leftCount < 1){
+//  if(leftCount < 1){
 		cout << "canLeft" << endl;
     return true;
-  }
+//  }
 }
   return false;
 }
@@ -74,7 +74,7 @@ bool canRight(){
 cout << "rightCall" << endl;
 cout << rightVal << endl;
 if(rightVal > 300){
- if(rightCount < 1){
+ //if(rightCount < 1){
 	 cout << "canRight" << endl;
    return true;
  }
@@ -134,18 +134,18 @@ int main (int argc, char const *argv[]) {
 			}while(0);
 while(true){
 		capture_and_display(drv);
-			while (canLeft()){
-				capture_and_display(drv);
+			if (canLeft()){
+			//	capture_and_display(drv);
 				pwm1.setPWM(0,0,600);
 		    pwm2.setPWM(1,0,400);
 			}
-			while (canRight()){
-				capture_and_display(drv);
+			if (canRight() && !canLeft() && rightVal < 400){
+			//	capture_and_display(drv);
 				pwm1.setPWM(0,0,400);
 		    pwm2.setPWM(1,0,600);
 			}
-			while (canForward()){
-				capture_and_display(drv);
+			while (canForward() && !canLeft()){
+				//capture_and_display(drv);
 				pwm1.setPWM(0,0,150);
 		    pwm2.setPWM(1,0,600);
 			}
