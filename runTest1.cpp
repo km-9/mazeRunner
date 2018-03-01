@@ -40,27 +40,15 @@ u_result capture_and_display(RPlidarDriver* drv){
 					for (int pos = 0; pos < (int)count ; ++pos) {
 									if (pos == 180){
 											rightVal = nodes[pos].distance_q2/4.0f;
-											printf("%s theta: %03.2f Dist: %08.2f Q: %d \n",
-				                  (nodes[pos].sync_quality & RPLIDAR_RESP_MEASUREMENT_SYNCBIT) ?"S ":"  ",
-				                  (nodes[pos].angle_q6_checkbit >> RPLIDAR_RESP_MEASUREMENT_ANGLE_SHIFT)/64.0f,
-				                  nodes[pos].distance_q2/4.0f,
-				                  nodes[pos].sync_quality >> RPLIDAR_RESP_MEASUREMENT_QUALITY_SHIFT);
+											cout << "Angle: "<< pos << " Dist: " << nodes[pos].distance_q2/4.0f;
 										}
-									if (pos >= 88 && pos <= 92){
+									if (pos == 90){
 											leftVal = nodes[pos].distance_q2/4.0f;
-											printf("%s theta: %03.2f Dist: %08.2f Q: %d \n",
-				                  (nodes[pos].sync_quality & RPLIDAR_RESP_MEASUREMENT_SYNCBIT) ?"S ":"  ",
-				                  (nodes[pos].angle_q6_checkbit >> RPLIDAR_RESP_MEASUREMENT_ANGLE_SHIFT)/64.0f,
-				                  nodes[pos].distance_q2/4.0f,
-				                  nodes[pos].sync_quality >> RPLIDAR_RESP_MEASUREMENT_QUALITY_SHIFT);
+											cout << "Angle: "<< pos << " Dist: " << nodes[pos].distance_q2/4.0f;
 										}
-									if (pos >= 268 && pos <= 272){
+									if (pos == 270){
 											frontVal = nodes[pos].distance_q2/4.0f;
-											printf("%s theta: %03.2f Dist: %08.2f Q: %d \n",
-				                  (nodes[pos].sync_quality & RPLIDAR_RESP_MEASUREMENT_SYNCBIT) ?"S ":"  ",
-				                  (nodes[pos].angle_q6_checkbit >> RPLIDAR_RESP_MEASUREMENT_ANGLE_SHIFT)/64.0f,
-				                  nodes[pos].distance_q2/4.0f,
-				                  nodes[pos].sync_quality >> RPLIDAR_RESP_MEASUREMENT_QUALITY_SHIFT);
+											cout << "Angle: "<< pos << " Dist: " << nodes[pos].distance_q2/4.0f;
 									}
 					}
 			}
